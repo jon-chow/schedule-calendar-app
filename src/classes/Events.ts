@@ -4,8 +4,8 @@
  */
 export class Events {
   private _title: string;
-  private _startDate: Date;
-  private _endDate: Date;
+  private _startDate: Date | null;
+  private _endDate: Date | null;
   private _isAllDay: boolean;
 
   /**
@@ -15,7 +15,7 @@ export class Events {
    * @param endDate the end date/time of the event
    * @param isAllDay set true if event is all day
    */
-  constructor(title: string, startDate: Date, endDate: Date, isAllDay: boolean=false) {
+  constructor(title: string, startDate: Date | null, endDate: Date | null, isAllDay: boolean=false) {
     this._title = title;
     this._startDate = startDate;
     this._endDate = endDate;
@@ -30,19 +30,19 @@ export class Events {
     this._title = title;
   }
 
-  get StartDate(): Date {
+  get StartDate(): Date | null {
     return this._startDate;
   }
 
-  set StartDate(startDate: Date) {
+  set StartDate(startDate: Date | null) {
     this._startDate = startDate;
   }
   
-  get EndDate(): Date {
+  get EndDate(): Date | null {
     return this._endDate;
   }
 
-  set EndDate(endDate: Date) {
+  set EndDate(endDate: Date | null) {
     this._endDate = endDate;
   }
 
