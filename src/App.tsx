@@ -31,7 +31,7 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-const events = [
+const tempEvents = [
   new Events('Event 1', new Date(2023,0,3), new Date(2023,0,4)),
   new Events('Event 2', new Date(2023,0,6), new Date(2023,0,12)),
   new Events('Event 3', new Date(2023,0,7), new Date(2023,0,15)),
@@ -42,12 +42,55 @@ const events = [
  * @returns JSX.Element
  */
 const App = () => {
+  const [allEvents, setAllEvents] = useState<Events[]>(tempEvents);
+  const [newEvent, setNewEvent] = useState<Events>(new Events("", new Date(), new Date()));
+
+  // Adds a new event to the list of events.
+  const handleAddEvent = () => {
+    setAllEvents([...allEvents, newEvent]);
+    setNewEvent(new Events("", new Date(), new Date()));
+  }
+
   return (
-    <div className="App">
+    <div className="app">
+      <h1>SCHEDULE CALENDAR APP</h1>
+
+      <div className="NewEventAdder">
+        <h3>Create New Event</h3>
+        <input
+          className="title"
+          type="text"
+          placeholder="Add Title"
+          value={newEvent.Title}
+          onChange={ (e) => setNewEvent(new Events(newEvent.Title=e.target.value, newEvent.StartDate, newEvent.EndDate)) } 
+        />
+        <DatePicker
+          className="startDate"
+          selected={newEvent.StartDate}
+          onChange={ (date) => setNewEvent(new Events(newEvent.Title, newEvent.StartDate=date, newEvent.EndDate)) }
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          timeCaption="time"
+          dateFormat="MMMM d, yyyy h:mm aa"
+        />
+        <DatePicker
+          className="endDate"
+          selected={newEvent.EndDate}
+          onChange={ (date) => setNewEvent(new Events(newEvent.Title, newEvent.StartDate, newEvent.EndDate=date)) }
+          showTimeSelect
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          timeCaption="time"
+          dateFormat="MMMM d, yyyy h:mm aa"
+        />
+        <button className="addNewEventButton" onClick={handleAddEvent}>Add Event</button>
+      </div>
+      
       <Calendar
-        className="Calendar"
+        className="calendar"
         localizer={localizer}
-        events={events.map((event) => {
+        events={allEvents.map((event) => {
           return {
             title: event.Title,
             allDay: event.IsAllDay,
