@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/schedule-calendar-app/static/css/main.4e5b8dd1.css",
+    "main.js": "/schedule-calendar-app/static/js/main.1be4c6ce.js",
+    "static/media/icon.png": "/schedule-calendar-app/static/media/icon.e10ec3aebe0c7342d17d.png",
+    "index.html": "/schedule-calendar-app/index.html",
+    "main.4e5b8dd1.css.map": "/schedule-calendar-app/static/css/main.4e5b8dd1.css.map",
+    "main.1be4c6ce.js.map": "/schedule-calendar-app/static/js/main.1be4c6ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4e5b8dd1.css",
+    "static/js/main.1be4c6ce.js"
+  ]
+}
