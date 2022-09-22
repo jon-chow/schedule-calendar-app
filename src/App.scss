@@ -1,16 +1,20 @@
 // Variables
 $calendarMargin: 20px;
 
-
-.App {
+.app {
   text-align: center;
   justify-content: center;
   align-items: center;
-}
+  margin-bottom: 10vh;
+  
+  h1, h2, h3 {
+    margin: 0;
+  }
 
-.Calendar {
-  display: inline-block;
-  width: calc(90% - $calendarMargin * 2);
-  height: 80vh;
-  margin: $calendarMargin;
+  .calendar {
+    display: inline-block;
+    width: calc(90% - $calendarMargin * 2);
+    height: 80vh;
+    margin: $calendarMargin;
+  }
 }
