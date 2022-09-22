@@ -1,5 +1,5 @@
 /* Packages/Libraries */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import DatePicker from 'react-datepicker';
@@ -31,24 +31,32 @@ const localizer = dateFnsLocalizer({
   locales,
 })
 
-const tempEvents = [
-  new Events('Event 1', new Date(2023,0,3), new Date(2023,0,4)),
-  new Events('Event 2', new Date(2023,0,6), new Date(2023,0,12)),
-  new Events('Event 3', new Date(2023,0,7), new Date(2023,0,15)),
-]
-
 /**
  * Returns the react app component.
  * @returns JSX.Element
  */
 const App = () => {
-  const [allEvents, setAllEvents] = useState<Events[]>(tempEvents);
+  const [allEvents, setAllEvents] = useState<Events[]>(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events') || '') : []);
   const [newEvent, setNewEvent] = useState<Events>(new Events("", new Date(), new Date()));
+
+  // Stores data from allEvents to local storage.
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(allEvents));
+  }, [allEvents]);
 
   // Adds a new event to the list of events.
   const handleAddEvent = () => {
-    setAllEvents([...allEvents, newEvent]);
-    setNewEvent(new Events("", new Date(), new Date()));
+    if (checkValid()) {
+      setAllEvents([...allEvents, newEvent]);
+      setNewEvent(new Events("", new Date(), new Date()));
+    } else {
+      alert("Please fill out the event details.");
+    }
+  }
+
+  // Returns true if event details are all filled out.
+  const checkValid = () => {
+    return (newEvent.Title === "" || newEvent.StartDate === undefined || newEvent.EndDate === undefined) ? false : true;
   }
 
   return (
