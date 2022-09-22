@@ -6,6 +6,24 @@ $calendarMargin: 20px;
   justify-content: center;
   align-items: center;
   margin-bottom: 10vh;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    
+    height: 10vh;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 1.2em;
+
+    .logo {
+      height: 100%;
+      margin-right: 5px;
+      pointer-events: none;
+    }
+  }
   
   h1, h2, h3 {
     margin: 0;

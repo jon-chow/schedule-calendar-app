@@ -17,6 +17,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './App.scss';
 
+/* Media */
+import icon from './images/icon.png';
+
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -61,7 +64,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>SCHEDULE CALENDAR APP</h1>
+      <div className="header">
+        <img src={icon} className="logo" alt="Logo" />
+        <h1>SCHEDULE CALENDAR APP</h1>
+      </div>
 
       <div className="NewEventAdder">
         <h3>Create New Event</h3>
